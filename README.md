@@ -3,11 +3,15 @@
 This repository contains the frontend code for the TodoList web application, built using React.
 
 ## Table of Contents
+- [Demo](#Demo)
 - [Overview](#overview)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
 - [Usage](#usage)
+
+## Demo
+Check out the demo of the To-Do List web application on Vimeo: <a href="https://vimeo.com/998060663" target="_blank">Watch Video</a>
 
 ## Overview
 The TodoList web application allows users to sign up, log in,add image, view events, and manage a todo list associated with each event. This repository contains the code for the frontend, which is built using React and interacts with a Node.js backend.
