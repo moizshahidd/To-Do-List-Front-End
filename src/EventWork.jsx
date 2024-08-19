@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import config from "./config";
 
 
 function EventWork(props) {
@@ -20,7 +21,7 @@ function EventWork(props) {
 
 
     const fetchData = async () => {
-        await axios.get(`${Api_Url}/getData/${ID}`, {
+        await axios.get(`${config.apiBaseUrl}/getData/${ID}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -45,7 +46,7 @@ function EventWork(props) {
 
 
     const AddEvent = async () => {
-        await axios.post(`${Api_Url}/AddEvents/${ID}`, Eventvalue, {
+        await axios.post(`${config.apiBaseUrl}/AddEvents/${ID}`, Eventvalue, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -79,7 +80,7 @@ function EventWork(props) {
 
 
     const handleDelete = async () => {
-        await axios.delete(`${Api_Url}/DeleteEvent/${ID}`, {
+        await axios.delete(`${config.apiBaseUrl}/DeleteEvent/${ID}`, {
             data: { selectedEvent },
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`

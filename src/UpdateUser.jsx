@@ -1,6 +1,8 @@
 import { React, useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import config from './config';
+
 
 function UpdateUser() {
     const navigate = useNavigate();
@@ -57,7 +59,7 @@ function UpdateUser() {
         }
         try {
             setEmailError('Checking email availability...');
-            const response = await axios.get(`${Api_Url}/CheckEmail`, {
+            const response = await axios.get(`${config.apiBaseUrl}/CheckEmail`, {
                 params: { Email: email }
             });
             setEmailError(response.data);
@@ -74,7 +76,7 @@ function UpdateUser() {
     const Update = async (e) => {
         e.preventDefault();
         if (!passwordError && (emailError === '' || emailError === 'Email Available!')) {
-            axios.put(`${Api_Url}/UpdateUser/${Id}`, Value, {
+            axios.put(`${config.apiBaseUrl}/UpdateUser/${Id}`, Value, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -146,6 +148,7 @@ function UpdateUser() {
                     <input
                         type="date"
                         className="form-control"
+                        value={Value.DOB}
                         onChange={e => setValue({ ...Value, DOB: e.target.value })}
                     />
                 </div>
@@ -157,6 +160,7 @@ function UpdateUser() {
                             className="form-check-input"
                             name="gender"
                             value="Male"
+                            checked={Value.Gender === "Male"}
                             onChange={e => setValue({ ...Value, Gender: e.target.value })}
                         />
                         <label className="form-check-label">Male</label>
@@ -167,6 +171,7 @@ function UpdateUser() {
                             className="form-check-input"
                             name="gender"
                             value="Female"
+                            checked={Value.Gender === "Female"}
                             onChange={e => setValue({ ...Value, Gender: e.target.value })}
                         />
                         <label className="form-check-label">Female</label>
@@ -177,6 +182,7 @@ function UpdateUser() {
                             className="form-check-input"
                             name="gender"
                             value="Other"
+                            checked={Value.Gender === "Other"}
                             onChange={e => setValue({ ...Value, Gender: e.target.value })}
                         />
                         <label className="form-check-label">Other</label>

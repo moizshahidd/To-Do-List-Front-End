@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import config from './config';
+
 
 function Login() {
     const navigate = useNavigate();
@@ -11,7 +13,7 @@ function Login() {
         if (!value.Email || !value.Password) {
             alert('Email and Password are required');
         } else {
-            axios.get(`${Api_Url}/Login`, { params: value })
+            axios.get(`${config.apiBaseUrl}/Login`, { params: value })
                 .then(res => {
                     localStorage.setItem('token', res.data.token);
                     navigate('/Events', { state: { LoginUser: res.data.userData.ID } });

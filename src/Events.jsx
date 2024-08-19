@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import EventWork from "./EventWork";
 import List from "./List";
+import config from "./config";
 
 function Events() {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ function Events() {
 
     useEffect(() => {
         if (ID) {
-            axios.get(`${Api_Url}/DatabyID/${ID}`, {
+            axios.get(`${config.apiBaseUrl}/DatabyID/${ID}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -53,7 +54,7 @@ function Events() {
         }
 
         try {
-            await axios.post(`${Api_Url}/ImageUpload`, formData, {
+            await axios.post(`${config.apiBaseUrl}/ImageUpload`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -84,7 +85,7 @@ function Events() {
         e.preventDefault();
         if (ID) {
             try {
-                await axios.delete(`${Api_Url}/DeleteImage/${ID}`, {
+                await axios.delete(`${config.apiBaseUrl}/DeleteImage/${ID}`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
@@ -106,7 +107,7 @@ function Events() {
         e.preventDefault();
         if (ID) {
             try {
-                await axios.delete(`${Api_Url}/DeleteAccount/${ID}`, {
+                await axios.delete(`${config.apiBaseUrl}/DeleteAccount/${ID}`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
