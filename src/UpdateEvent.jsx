@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useLocation, json } from "react-router-dom";
+import config from './config';
+
 
 function UpdateEvent() {
     const navigate = useNavigate();
@@ -28,7 +30,7 @@ function UpdateEvent() {
 
     const Submit = async (e) => {
         e.preventDefault();
-        axios.put(`${Api_Url}/UpdateEvent/${Value.Id}`, Value, {
+        axios.put(`${config.apiBaseUrl}/UpdateEvent/${Value.Id}`, Value, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }

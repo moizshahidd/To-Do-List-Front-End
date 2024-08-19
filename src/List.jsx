@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import config from "./config";
 
 
 function List(props) {
@@ -23,7 +24,7 @@ function List(props) {
 
 
     const fetchData = async () => {
-        await axios.get(`${Api_Url}/getTaskData/${EventID}`, {
+        await axios.get(`${config.apiBaseUrl}/getTaskData/${EventID}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -48,7 +49,7 @@ function List(props) {
 
 
     const AddTaskValue = async () => {
-        await axios.post(`${Api_Url}/AddTask/${EventID}`, TaskValue, {
+        await axios.post(`${config.apiBaseUrl}/AddTask/${EventID}`, TaskValue, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -70,7 +71,7 @@ function List(props) {
 
 
     const handleDelete = async () => {
-        await axios.delete(`${Api_Url}/DeleteTask/${EventID}`, {
+        await axios.delete(`${config.apiBaseUrl}/DeleteTask/${EventID}`, {
             data: { selectedList },
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -93,7 +94,7 @@ function List(props) {
             return task && task.TaskDone === "Yes";
         });
         const TaskDone = allTasksDone ? "No" : "Yes";
-        await axios.put(`${Api_Url}/UpdateTaskDone/${EventID}`, { selectedList, TaskDone }, {
+        await axios.put(`${config.apiBaseUrl}/UpdateTaskDone/${EventID}`, { selectedList, TaskDone }, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import config from './config';
 
 function SignUP() {
     const navigate = useNavigate();
@@ -39,7 +40,7 @@ function SignUP() {
 
         try {
             setEmailError('Checking email availability...');
-            const response = await axios.get(`${Api_Url}/CheckEmail`, {
+            const response = await axios.get(`${config.apiBaseUrl}/CheckEmail`, {
                 params: { Email: email }
             });
             setEmailError(response.data);
@@ -52,7 +53,7 @@ function SignUP() {
     const Submit = async (e) => {
         e.preventDefault();
         if (!passwordError && emailError === 'Email Available!') {
-            axios.post(`${Api_Url}/SignUP/`, value)
+            axios.post(`${config.apiBaseUrl}/SignUP/`, value)
                 .then(res => {
                     localStorage.setItem('token', res.data.token);
                     const user = res.data.ID;

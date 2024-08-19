@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
+import config from './config';
+
 
 function UpdateList() {
     const navigate = useNavigate();
@@ -34,7 +36,7 @@ function UpdateList() {
 
 
     const Submit = async () => {
-        axios.put(`${Api_Url}/UpdateTask/${Value.Id}`, Value, {
+        axios.put(`${config.apiBaseUrl}/UpdateTask/${Value.Id}`, Value, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -74,6 +76,7 @@ function UpdateList() {
                     <input
                         type="date"
                         className="form-control"
+                        value={Value.Date}
                         onChange={e => setValue({ ...Value, Date: e.target.value })}
                     />
                 </div>
@@ -82,6 +85,7 @@ function UpdateList() {
                     <input
                         type="time"
                         className="form-control"
+                        value={Value.Time}
                         onChange={e => setValue({ ...Value, Time: e.target.value })}
                     />
                 </div>
@@ -93,6 +97,7 @@ function UpdateList() {
                             className="form-check-input"
                             name="taskDone"
                             value="Yes"
+                            checked={Value.TaskDone === "Yes"}
                             onChange={e => setValue({ ...Value, TaskDone: e.target.value })}
                         />
                         <label className="form-check-label">Yes</label>
@@ -103,6 +108,7 @@ function UpdateList() {
                             className="form-check-input"
                             name="taskDone"
                             value="No"
+                            checked={Value.TaskDone === "No"}
                             onChange={e => setValue({ ...Value, TaskDone: e.target.value })}
                         />
                         <label className="form-check-label">No</label>
