@@ -148,7 +148,7 @@ function UpdateUser() {
                     <input
                         type="date"
                         className="form-control"
-                        value={Value.DOB}
+                        value={Value.DOB ? Value.DOB.split('T')[0] : ''}
                         onChange={e => setValue({ ...Value, DOB: e.target.value })}
                     />
                 </div>

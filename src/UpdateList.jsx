@@ -76,7 +76,7 @@ function UpdateList() {
                     <input
                         type="date"
                         className="form-control"
-                        value={Value.Date}
+                        value={Value.Date ? Value.Date.split('T')[0] : ''}
                         onChange={e => setValue({ ...Value, Date: e.target.value })}
                     />
                 </div>
@@ -85,7 +85,7 @@ function UpdateList() {
                     <input
                         type="time"
                         className="form-control"
-                        value={Value.Time}
+                        value={Value.Time ? Value.Time.split('T')[1].substring(0, 5) : ''}
                         onChange={e => setValue({ ...Value, Time: e.target.value })}
                     />
                 </div>
